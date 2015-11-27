@@ -7,6 +7,7 @@ RUN apt-get update \
     && chmod +x /usr/local/bin/docker-compose \
     && rm -rf /var/lib/apt/lists/*
 
+RUN /root/bamboo-update-capability.sh system.builder.docker.Docker /usr/bin/docker
 RUN /root/bamboo-update-capability.sh system.builder.docker-compose.Docker\ Compose /usr/local/bin/docker-compose
 
 ENTRYPOINT ["/bin/sh", "-c", "/root/run-agent.sh"]
