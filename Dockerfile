@@ -15,7 +15,7 @@ RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 581
     && rm -rf /var/lib/apt/lists/*
 
 RUN /root/bamboo-update-capability.sh system.docker.executable /usr/bin/docker \
-    && /root/bamboo-update-capability.sh system.builder.docker-compose.Docker\ Compose /usr/local/bin/docker-compose \
+    && /root/bamboo-update-capability.sh system.builder.command.Docker\ Compose /usr/local/bin/docker-compose \
     && /root/bamboo-update-capability.sh docker-engine.version 1.9.1 \
     && /root/bamboo-update-capability.sh docker-compose.version 1.5.2
 ENTRYPOINT ["/bin/sh", "-c", "/root/run-agent.sh"]
