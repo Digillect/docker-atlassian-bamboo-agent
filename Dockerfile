@@ -3,14 +3,10 @@ MAINTAINER Gregory Nickonov <gregoryn@actis.ru>
 LABEL com.aw.components.docker-engine.version="1.9.1" \
       com.aw.components.docker-compose.version="1.5.2"
 
-# Maven version to install
-ENV MAVEN_INSTALL_VERSION 3.3.9
-# Gradle version to install
-ENV GRADLE_INSTALL_VERSION 2.9
 # Docker Engine version to install
-ENV DOCKER_ENGINE_VERSION 1.9.1
+ENV DOCKER_ENGINE_VERSION 1.10.0
 # Docker Compose version to install
-ENV DOCKER_COMPOSE_VERSION 1.5.2
+ENV DOCKER_COMPOSE_VERSION 1.6.0
 
 COPY docker.repo /etc/yum.repos.d/docker.repo
 

@@ -5,3 +5,5 @@ run this agent use the following command line:
 ```
 docker run -d --restart=always -e BAMBOO_SERVER=http://your.bamboo.server/ -v /var/run/docker.sock:/var/run/docker.sock actis/atlassian-bamboo-agent
 ```
+
+You can also pass environment variable BAMBOO_AGENT_CAPABILITY with content formatted as JAVA property (property=value) which will be added to agent capabilities.
