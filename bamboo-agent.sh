@@ -10,17 +10,29 @@ fi
 
 BAMBOO_AGENT=atlassian-bamboo-agent-installer.jar
 
+if [ -z "${BAMBOO_AGENT_HOME}" ]; then
+	export BAMBOO_AGENT_HOME=/var/lib/bamboo
+fi
+
 if [ ! -f ${BAMBOO_AGENT} ]; then
 	echo "Downloading agent JAR..."
 	wget "-O${BAMBOO_AGENT}" "${BAMBOO_SERVER}/agentServer/agentInstaller/${BAMBOO_AGENT}"
 fi
 
-if [ ! -f bamboo-agent-home/bamboo-agent.cfg.xml -a "${BAMBOO_AGENT_UUID}" != "" ]; then
-	echo 'agentUuid='${BAMBOO_AGENT_UUID} >> bamboo-agent-home/bamboo-capabilities.properties
+if [ ! -d ${BAMBOO_AGENT_HOME} ]; then
+	mkdir -p ${BAMBOO_AGENT_HOME}
 fi
 
-if [ ! -f bamboo-agent-home/bamboo-agent.cfg.xml -a "${BAMBOO_AGENT_CAPABILITY}" != "" ]; then
-	echo ${BAMBOO_AGENT_CAPABILITY} >> bamboo-agent-home/bamboo-capabilities.properties
+if [ ! -f ${BAMBOO_AGENT_HOME}/bamboo-capabilities.properties ]; then
+	cp bamboo-capabilities.properties ${BAMBOO_AGENT_HOME}
+fi
+
+if [ ! -f ${BAMBOO_AGENT_HOME}/bamboo-agent.cfg.xml -a "${BAMBOO_AGENT_UUID}" != "" ]; then
+	echo 'agentUuid='${BAMBOO_AGENT_UUID} >> ${BAMBOO_AGENT_HOME}/bamboo-capabilities.properties
+fi
+
+if [ ! -f ${BAMBOO_AGENT_HOME}/bamboo-agent.cfg.xml -a "${BAMBOO_AGENT_CAPABILITY}" != "" ]; then
+	echo ${BAMBOO_AGENT_CAPABILITY} >> ${BAMBOO_AGENT_HOME}/bamboo-capabilities.properties
 fi
 
 echo "Setting up the environment..."
@@ -28,4 +40,4 @@ export LANG=en_US.UTF-8
 export JAVA_TOOL_OPTIONS="-Dfile.encoding=utf-8 -Dsun.jnu.encoding=utf-8"
 
 echo Starting Bamboo Agent...
-java -jar "${BAMBOO_AGENT}" "${BAMBOO_SERVER}/agentServer/"
+java -Dbamboo.home=${BAMBOO_AGENT_HOME} -jar "${BAMBOO_AGENT}" "${BAMBOO_SERVER}/agentServer/"

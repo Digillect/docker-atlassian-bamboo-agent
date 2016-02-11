@@ -23,7 +23,7 @@ RUN curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE
 WORKDIR /root
 
 COPY bamboo-agent.sh /root/bamboo-agent.sh
-COPY bamboo-capabilities.properties /root/bamboo-agent-home/bin/
+COPY bamboo-capabilities.properties /root/bamboo-capabilities.properties
 
 #USER bamboo-agent
 ENTRYPOINT ["/bin/bash", "-c", "/root/bamboo-agent.sh"]
