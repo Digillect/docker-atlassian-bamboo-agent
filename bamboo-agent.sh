@@ -19,12 +19,12 @@ if [ ! -f ${BAMBOO_AGENT} ]; then
 	wget "-O${BAMBOO_AGENT}" "${BAMBOO_SERVER}/agentServer/agentInstaller/${BAMBOO_AGENT}"
 fi
 
-if [ ! -d ${BAMBOO_AGENT_HOME} ]; then
+if [ ! -d ${BAMBOO_AGENT_HOME}/bin ]; then
 	mkdir -p ${BAMBOO_AGENT_HOME}/bin
 fi
 
 if [ ! -f ${BAMBOO_AGENT_HOME}/bin/bamboo-capabilities.properties ]; then
-	cp bamboo-capabilities.properties ${BAMBOO_AGENT_HOME}/bin
+	cp bamboo-capabilities.properties ${BAMBOO_AGENT_HOME}/bin/
 fi
 
 if [ ! -f ${BAMBOO_AGENT_HOME}/bamboo-agent.cfg.xml -a "${BAMBOO_AGENT_UUID}" != "" ]; then
