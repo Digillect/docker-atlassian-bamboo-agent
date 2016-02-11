@@ -20,19 +20,19 @@ if [ ! -f ${BAMBOO_AGENT} ]; then
 fi
 
 if [ ! -d ${BAMBOO_AGENT_HOME} ]; then
-	mkdir -p ${BAMBOO_AGENT_HOME}
+	mkdir -p ${BAMBOO_AGENT_HOME}/bin
 fi
 
-if [ ! -f ${BAMBOO_AGENT_HOME}/bamboo-capabilities.properties ]; then
-	cp bamboo-capabilities.properties ${BAMBOO_AGENT_HOME}
+if [ ! -f ${BAMBOO_AGENT_HOME}/bin/bamboo-capabilities.properties ]; then
+	cp bamboo-capabilities.properties ${BAMBOO_AGENT_HOME}/bin
 fi
 
 if [ ! -f ${BAMBOO_AGENT_HOME}/bamboo-agent.cfg.xml -a "${BAMBOO_AGENT_UUID}" != "" ]; then
-	echo 'agentUuid='${BAMBOO_AGENT_UUID} >> ${BAMBOO_AGENT_HOME}/bamboo-capabilities.properties
+	echo 'agentUuid='${BAMBOO_AGENT_UUID} >> ${BAMBOO_AGENT_HOME}/bin/bamboo-capabilities.properties
 fi
 
 if [ ! -f ${BAMBOO_AGENT_HOME}/bamboo-agent.cfg.xml -a "${BAMBOO_AGENT_CAPABILITY}" != "" ]; then
-	echo ${BAMBOO_AGENT_CAPABILITY} >> ${BAMBOO_AGENT_HOME}/bamboo-capabilities.properties
+	echo ${BAMBOO_AGENT_CAPABILITY} >> ${BAMBOO_AGENT_HOME}/bin/bamboo-capabilities.properties
 fi
 
 echo "Setting up the environment..."
