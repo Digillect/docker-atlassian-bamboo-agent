@@ -1,7 +1,7 @@
 FROM centos:7
 MAINTAINER Gregory Nickonov <gregoryn@actis.ru>
-LABEL com.aw.components.docker-engine.version="1.10.3" \
-      com.aw.components.docker-compose.version="1.6.2"
+LABEL com.aw.components.docker-engine.version="1.11.1" \
+      com.aw.components.docker-compose.version="1.7.1"
 
 # Docker Engine version to install
 ENV DOCKER_ENGINE_VERSION 1.10.3
