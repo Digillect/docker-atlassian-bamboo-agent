@@ -2,8 +2,8 @@ FROM centos:7
 MAINTAINER Gregory Nickonov <gregoryn@actis.ru>
 
 # Set Engine/Compose versions to be used
-ENV DOCKER_ENGINE_VERSION 1.11.1
-ENV DOCKER_COMPOSE_VERSION 1.7.1
+ENV DOCKER_ENGINE_VERSION 1.12.1
+ENV DOCKER_COMPOSE_VERSION 1.8.0
 
 LABEL com.aw.components.docker-engine.version="${DOCKER_ENGINE_VERSION}" \
       com.aw.components.docker-compose.version="${DOCKER_COMPOSE_VERSION}"
