@@ -23,15 +23,15 @@ if [ ! -d ${BAMBOO_AGENT_HOME}/bin ]; then
 	mkdir -p ${BAMBOO_AGENT_HOME}/bin
 fi
 
-if [ ! -f ${BAMBOO_AGENT_HOME}/bin/bamboo-capabilities.properties ]; then
-	cp bamboo-capabilities.properties ${BAMBOO_AGENT_HOME}/bin/
-fi
+cp bamboo-capabilities.properties ${BAMBOO_AGENT_HOME}/bin/
 
 docker_version=`docker --version | sed -e "s/Docker version \(.*\), build .*/\1/"`
 compose_version=`docker-compose --version | sed -e "s/docker\-compose version \(.*\), build .*/\1/"`
+kubectl_version=`kubectl version --short --client | sed -e "s/^Client Version: v\(.*\)$/\1/"`
 
 sed -i -E "s/docker\.version=.*/docker\.version=$docker_version/" ${BAMBOO_AGENT_HOME}/bin/bamboo-capabilities.properties
 sed -i -E "s/docker\-compose\.version=.*/docker\-compose\.version=$compose_version/" ${BAMBOO_AGENT_HOME}/bin/bamboo-capabilities.properties
+sed -i -E "s/kubectl\.version=.*/kubectl\.version=$kubectl_version/" ${BAMBOO_AGENT_HOME}/bin/bamboo-capabilities.properties
 
 if [ ! -f ${BAMBOO_AGENT_HOME}/bamboo-agent.cfg.xml -a "${BAMBOO_AGENT_UUID}" != "" ]; then
 	echo 'agentUuid='${BAMBOO_AGENT_UUID} >> ${BAMBOO_AGENT_HOME}/bin/bamboo-capabilities.properties
