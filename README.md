@@ -1,3 +1,5 @@
+[![](https://images.microbadger.com/badges/image/actis/atlassian-bamboo-agent.svg)](https://microbadger.com/images/actis/atlassian-bamboo-agent "Get your own image badge on microbadger.com")
+
 # Atlassian Bamboo agent with ability to run docker commands on host
 This installation allows to execute docker commands on container host. To properly
 run this agent use the following command line:
