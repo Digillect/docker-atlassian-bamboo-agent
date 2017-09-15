@@ -2,17 +2,17 @@ FROM centos:7
 MAINTAINER Gregory Nickonov <gregoryn@actis.ru>
 
 # Set Engine/Compose versions to be used
-ENV DOCKER_VERSION 17.07.0-ce
+ENV DOCKER_VERSION 17.06.2.ce
 ENV DOCKER_COMPOSE_VERSION 1.16.1
 
 LABEL com.digillect.components.docker.version="${DOCKER_VERSION}" \
       com.digillect.components.docker-compose.version="${DOCKER_COMPOSE_VERSION}"
 
-COPY docker.repo /etc/yum.repos.d/docker.repo
-
 # Update system & install dependencies
 RUN yum -y update \
-	&& yum -q -y install git java-1.8.0-openjdk-devel openssl unzip wget which docker-engine-${DOCKER_VERSION} \
+	&& yum -q -y install yum-utils device-mapper-persistent-data lvm2 \
+	&& yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo \
+	&& yum -q -y install git java-1.8.0-openjdk-devel openssl unzip wget which docker-ce-${DOCKER_VERSION} \
 	&& yum -q -y clean all
 
 # Installing docker-compose
